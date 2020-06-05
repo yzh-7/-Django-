@@ -1,0 +1,92 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block css %} <link rel="stylesheet" href="{% static "mycss/main.css" %}">{% endblock %}
+{% block title %}留言{% endblock %}
+{% block bodystyle %}overflow-y:scroll;{% endblock %}
+<style>
+    .errStyle{
+        text-align: center;
+        color: red;
+    }
+</style>
+{% block 主页%}{% url '主页' %}{% endblock %}
+<body onload="load()"></body>
+{% block content %}
+    <div class="content whisper-content leacots-content" style="height: 785px;overflow-y: auto">
+    <div class="cont w1000">
+      <div class="whisper-list">
+        <div class="item-box">
+          <div class="review-version" >
+              <div class="form-box" >
+                <img class="banner-img" src="{% static 'img/liuyan.jpg' %}"style="float: none;margin-left: 225px">
+                <div class="form">
+                    <div class="layui-input-block errStyle">{{ errTip }}</div>
+                  <form class="layui-form" action="/leacot/" lay-filter="example" method="post">
+                    <div class="layui-form-item layui-form-text">
+                      <div class="layui-input-block" style="width: 1000px;margin-left: 225px">
+                        <textarea name="desc" placeholder="请留下您最宝贵的意见和建议！" class="layui-textarea"></textarea>
+                      </div>
+                    </div>
+                    <div class="layui-form-item">
+                      <div class="layui-input-block" style="text-align: right;">
+                        <button class="layui-btn definite" lay-submit="" style="margin-right: 255px">確定</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+             <div class="volume" style="margin-left: 225px">
+                 全部留言:<span id="ss0"></span>
+             </div>
+              {% for u in list %}
+                  <div class="list-cont">
+                      <div class="cont">
+                          <div class="img" style="float: left">
+                              <img src="{% static 'img/header.png' %}" alt="">
+                          </div>
+                          <div class="text">
+                              <p class="tit" style="float: left">
+                              <div class="name" style="float: left">{{ u.name }}</div>
+                              <div class="data" style="float: right;">
+                                  <div style="float: right;">
+                                      <a onclick="fun_del_l(this)" class="layui-btn definite layui-bg-red" style="margin: 0 21px 0 21px;text-align: center" id="{{ u.id }}">删除</a>
+                                  </div>
+                                  <div name="ymd_b" style="float: right;">{{ u.c_time|date:"Y-m-d h:m:s" }}</div>
+                              </div>
+                              </p>
+                              <div class="ct" style="width: 700px;clear: left">{{ u.leacots }}</div>
+                          </div>
+                      </div>
+                  </div>
+              {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div id="demo" style="text-align: center;"></div>
+    </div>
+  </div>
+{% endblock %}
+
+    {% block script %}
+    <script src="{% static "layui/layui.all.js" %}">
+        layui.use('element', function () {
+            var element = layui.element;
+            //…
+        });
+
+    </script>
+          <script>
+        function fun_num() {
+            document.getElementById('ss0').innerText = {{ max_leacots }}
+        }
+        window.onload = fun_num;
+    </script>
+<script>
+    function fun_del_l(a) {
+    f = "/del_l/"+a.id+"/"
+    {#alert(f)#}
+    location.href = f;
+
+}
+</script>
+    {% endblock %}

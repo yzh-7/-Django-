@@ -1,0 +1,31 @@
+<!doctype html>
+{% load  static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            height: 705px;
+            background-image: url('{% static "img/goodbye.jpg" %}') ;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        .goodbye{
+            position: absolute;
+            font-size: 50px;
+            color: #fff;
+            top:100px;
+            left: 550px;
+        }
+    </style>
+</head>
+<body>
+<div class="goodbye">
+    青山绿水 江湖再见
+</div>
+</body>
+</html>

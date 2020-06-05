@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}">
+</head>
+
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">酒店后台管理</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="{% static 'img/admin.jpg'%}" class="layui-nav-img">
+                    admin
+                </a>
+{#                <dl class="layui-nav-child">#}
+{#                    <dd><a href="">基本资料</a></dd>#}
+{#                    <dd><a href="">安全设置</a></dd>#}
+{#                </dl>#}
+{#            </li>#}
+{#            <li class="layui-nav-item"><a href="">退了</a></li>#}
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <li class="layui-nav-item"><a href="{% url '用户管理'%}">用户管理</a></li>
+                <li class="layui-nav-item"><a href="{% url '入住管理' %}">入住管理</a></li>
+                <li class="layui-nav-item"><a href="{% url '客房管理' %}">客房管理</a></li>
+{#                <li class="layui-nav-item"><a href="#">客房类型管理</a></li>#}
+                <li class="layui-nav-item"><a href="{% url '菜品管理' %}">订餐管理</a></li>
+                <li class="layui-nav-item"><a href="{% url '餐桌管理' %}">餐桌管理</a></li>
+{#                <li class="layui-nav-item"><a href="{% url '消费管理' %}">消费管理</a></li>#}
+                <li class="layui-nav-item"><a href="{% url '公告管理' %}">公告管理</a></li>
+                <li class="layui-nav-item"><a href="{% url '用户留言' %}">用户留言</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+        {% block content %}
+
+        {% endblock %}
+
+
+    <div class="layui-footer" style="text-align: center">
+        <!-- 底部固定区域 -->
+        欢迎你，admin!
+    </div>
+</div>
+
+<script src="{% static 'layui/layui.all.js' %}"></script>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function () {
+        var element = layui.element;
+
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title%}入住管理{% endblock %}
+{% block content %}
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend>入住信息管理</legend>
+        </fieldset>
+
+        <div class="layui-container">
+            <table class="layui-table" lay-skin="nob">
+                {#                <colgroup>#}
+                {#                    <col width="100">#}
+                {#                    <col width="100">#}
+                {#                    <col width="100">#}
+                {#                    <col width="100">#}
+                {#                </colgroup>#}
+                <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>用户名</th>
+                    <th>客房号</th>
+                    <th>客房状态</th>
+                    <th>预订天数</th>
+                    <th>预订日期</th>
+                    <th>操作</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for m in movein_this %}
+                <tr>
+                    <td>{{ forloop.counter }}</td><!--这里可以用forloop实现编号的递增-->
+                    <td>{{ m.username }}</td>
+                    <td>{{ m.id }}</td>
+                    <td>{{ m.roomstatus}}</td>
+                    <td>{{ m.predate }}</td>
+                    <td>{{ m.movein_time|date:'Y-m-d' }}</td>
+                    <td><a href="/moveinmanage/{{ m.pk }}/change" class="layui-btn">修改</a></td>
+                    <td><a href="/moveinmanage/{{ m.pk }}/delete" class="layui-btn layui-btn-danger">删除</a></td>
+                </tr>
+                {% endfor %}
+{#                <tr>#}
+{#                    <td>2</td>#}
+{#                    <td>2</td>#}
+{#                    <td>1</td>#}
+{#                    <td>1</td>#}
+{#                    <td>1</td>#}
+{#                    <td>1</td>#}
+{#                    <td><a href="#" class="layui-btn">修改</a></td>#}
+{#                </tr>#}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title%}客房管理{% endblock %}
+{% block content %}
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend>客房信息管理</legend>
+        </fieldset>
+
+        <div class="layui-container">
+            <a href="{% url '添加客房'%}" class="layui-btn">添加客房</a>
+            <table class="layui-table" lay-skin="nob">
+                {#                <colgroup>#}
+                {#                    <col width="100">#}
+                {#                    <col width="100">#}
+                {#                    <col width="100">#}
+                {#                    <col width="100">#}
+                {#                </colgroup>#}
+                <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>客房类型</th>
+                    <th>客房面积</th>
+                    <th>客房价格</th>
+                    <th>客房图片</th>
+{#                    <th>客房状态</th>#}
+                    <th>操作</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for r in room_this %}
+                <tr>
+                    <td>{{ forloop.counter }}</td><!--这里可以用forloop实现编号的递增-->
+                    <td>{{ r.roomtype }}</td>
+                    <td>{{ r.roomspace }}</td>
+                    <td>{{ r.roomprice }}</td>
+                    <td><img src="/media/{{ r.roomphoto }}" style="width: 100px;"></td>
+{#                    <td>{{ r.roomstatus }}</td>#}
+                    <td><a href="/roommanage/{{ r.pk }}/change" class="layui-btn">修改</a></td>
+                    <td><a href="/roommanage/{{ r.pk }}/delete" class="layui-btn layui-btn-danger">删除</a></td>
+                </tr>
+                {% endfor %}
+{#                <tr>#}
+{#                    <td>2</td>#}
+{#                    <td>2</td>#}
+{#                    <td>1</td>#}
+{#                    <td>1</td>#}
+{#                    <td>1</td>#}
+{#                    <td>1</td>#}
+{#                    <td><a href="#" class="layui-btn">修改</a></td>#}
+{#                </tr>#}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

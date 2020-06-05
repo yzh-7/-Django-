@@ -1,0 +1,49 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block title %}选桌{% endblock %}
+
+{% block bodystyle %}overflow-y:scroll;{% endblock %}
+{% block 主页%}{% url '主页' %}{% endblock %}
+
+{% block content %}
+
+    <div class="content">
+        <div class="cont w1000">
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+                <legend>选桌</legend>
+            </fieldset>
+            <div class="layui-container">
+                <table class="layui-table" lay-skin="nob">
+                    <colgroup>
+                        <col width="300">
+                        <col width="300">
+                        <col>
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>餐桌号</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for t in tableList %}
+                        {% if t.tablestatus == 0 %}
+                    <form class="layui-form" method="post" action="/choosetablemsg/">
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ t.tablenumber }}</td>
+                        <input type="text" style="display: none" name="table_id" value="{{ t.id }}">
+                        <input type="text" style="display: none" name="table_status" value="{{ t.tablestatus }}">
+                        <td><button class="layui-btn" type="submit">选择</button></td>
+                    </tr>
+                    </form>
+                        {% endif %}
+                     {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

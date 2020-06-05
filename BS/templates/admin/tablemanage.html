@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}餐桌管理{% endblock %}
+{% block content %}
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend>餐桌信息管理</legend>
+        </fieldset>
+
+        <div class="layui-container">
+            <a href="{% url '添加餐桌' %}" class="layui-btn">添加餐桌</a>
+            <table class="layui-table" lay-skin="nob">
+                {#                <colgroup>#}
+                {#                    <col width="100">#}
+                {#                    <col width="100">#}
+                {#                    <col width="100">#}
+                {#                    <col width="100">#}
+                {#                </colgroup>#}
+                <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>就餐用户</th>
+                    <th>餐桌号</th>
+                    <th>餐桌状态</th>
+                    <th>操作</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for t in table_this %}
+
+                <tr>
+                    <td>{{ forloop.counter }}</td><!--这里可以用forloop实现编号的递增-->
+                    <td>{{t.username}}</td>
+                    <td>{{ t.tablenumber }}</td>
+                    <td>{{ t.tablestatus }}</td>
+                    <td><a href="/tablemanage/{{ t.pk }}/change" class="layui-btn">修改</a></td>
+                    <td><a href="/tablemanage/{{ t.pk }}/delete" class="layui-btn layui-btn-danger">删除</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

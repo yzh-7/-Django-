@@ -1,0 +1,52 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>欢迎界面</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background-image: url("{% static 'img/welcome.jpg'%}");
+        }
+        p{
+            width: 400px;
+            height: 80px;
+        }
+        .welcome{
+            position: relative;
+            top:225px;
+            left: 630px;
+        }
+        .first{
+            {#position: absolute;#}
+            font-size: 54px;
+            color: #4a4a4a;
+            letter-spacing: 10px;
+
+        }
+        .second{
+            {#position: absolute;#}
+            display: block;
+            font-size: 44px;
+            color: #8c8c8c;
+            line-height: 80px;
+            letter-spacing: 15px;
+            margin-left: -43px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome">
+    <p class="first">欢迎光临</p>
+    <a href="{% url '主页'%}" class="second">点击进入系统</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static "layui/css/layui.css" %}">
+
+</head>
+<body>
+<ul class="layui-nav layui-bg-green">
+    <li class="layui-nav-item "><a href="{% url '注册' %}">注册</a></li>
+    <li class="layui-nav-item layui-this"><a href="{% url '登录' %}">登录</a></li>
+</ul>
+<div class="layui-container">
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>登录页面</legend>
+    </fieldset>
+    <div class="layui-row">
+        <div class="layui-col-md4" style="visibility: hidden">
+            左四
+        </div>
+
+        <div class="layui-col-md4">
+            <div class="grid-demo grid-demo-bgl" style="margin-top: 30px">
+                <form class="layui-form" action="" method="post">
+                    <div class="layui-form-item">
+                       <div class="layui-input-block errStyle">{{ errTip }}</div>
+                   </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">用户名:</label>
+                        <div class="layui-input-inline">
+                            <input type="text" placeholder="请输入用户名" autocomplete="off" class="layui-input" name="username">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">密码框:</label>
+                        <div class="layui-input-inline">
+                            <input type="password" placeholder="请输入密码" autocomplete="off" class="layui-input" name="userpwd">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" type="submit">登录</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="layui-col-md4" style="visibility: hidden">
+            右四
+        </div>
+    </div>
+</div>
+<script src="{% static "layui/layui.all.js" %}">
+    layui.use('form', function () {
+        var form = layui.form;
+    });
+</script>
+</body>
+</html>

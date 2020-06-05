@@ -1,0 +1,67 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block title %}我的订单{% endblock %}
+
+{% block bodystyle %}overflow-y:scroll;{% endblock %}
+{% block 主页 %}{% url '主页' %}{% endblock %}
+{% block content %}
+
+    <div class="content">
+    <div class="cont w1000">
+
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend>我的订单</legend>
+        </fieldset>
+
+        <div class="layui-container">
+            <table class="layui-table" lay-skin="nob">
+                {#                <colgroup>#}
+                {#                    <col width="100">#}
+                {#                    <col width="100">#}
+                {#                    <col width="100">#}
+                {#                    <col width="100">#}
+                {#                </colgroup>#}
+                <thead>
+                <tr>
+                    <th>编号</th>
+{#                    <th>用户名</th>#}
+                    <th>订购房间</th>
+                    <th>房间类型</th>
+                    <th>预订天数</th>
+                    <th>房间价格</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for m in moveinList %}
+                    <form action="/myordermsg/" method="post">
+                        <tr>
+                            <td>{{ forloop.counter }}</td><!--这里可以用forloop实现编号的递增-->
+{#                            <td>{{ u.username }}</td>#}
+                            <td><img src="/media/{{ m.roomphoto }}" style="width=100px;"></td>
+                            <td>{{ m.roomtype }}</td>
+                            <td>{{ m.predate }}</td>
+                            <td>{{ m.roomprice }}</td>
+                            <input type="text" style="display: none" name="order_id" value="{{ m.id }}">
+                            <td><button type="submit" class="layui-btn">退订</button></td>
+                            {#                    <td><a href="/usermanage/{{ u.pk}}/delete" class="layui-btn layui-btn-danger">删除</a></td>#}
+                        </tr>
+                    </form>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static "layui/layui.all.js" %}">
+        layui.use('element', function () {
+            var element = layui.element;
+            //…
+        });
+    </script>
+{% endblock %}

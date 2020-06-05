@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}主页{% endblock %}</title>
+    <link rel="stylesheet" href="{% static "layui/css/layui.css" %}">
+    {% block css %} <link rel="stylesheet" href="{% static 'css/home.css' %}">{% endblock %}
+</head>
+<body class="layui-layout-body" style="{% block bodystyle %}overflow-y:scroll;height: 5000px;{% endblock %} ">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div><a href="{% block 主页%}#{% endblock %}" class="layui-logo">Yuan's Hotel</a></div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item "><a href="{% url '入住' %}">入住</a></li>
+            <li class="layui-nav-item"><a href="{% url '点餐' %}">点餐</a></li>
+            <li class="layui-nav-item"><a href="{% url '选桌' %}">选桌</a></li>
+            <li class="layui-nav-item"><a href="{% url '地图' %}">地图</a></li>
+            <li class="layui-nav-item"><a href="{% url '留言' %}">留言</a></li>
+
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item "><a href="{% url '公告' %}">公告</a></li>
+            <li class="layui-nav-item "><a href="{% url '登录' %}">登录</a></li>
+            <li class="layui-nav-item "><a href="{% url '注册' %}">注册</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="{% static 'img/admin.jpg'%}" class="layui-nav-img">
+                    {{username}}
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="{% url '修改密码'%}">修改密码</a></dd>
+                    <dd><a href="{% url '我的订单' %}">我的订单</a></dd>
+                    <dd><a href="{% url '注销登录' %}">注销登录</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+</div>
+
+{% block content %}
+<div class="layui-fluid" >
+     <!-- main 模块 -->
+    <div class="w">
+        <div class="main">
+            <div class="focus fl">
+                <!-- 左侧按钮 -->
+                <a href="javascript:;" class="arrow-l">
+                    &lt;
+                 </a>
+                <!-- 右侧按钮 -->
+                <a href="javascript:;" class="arrow-r">
+                    &gt;
+                </a>
+                <!-- 核心的滚动区域 -->
+                <ul>
+                    <li>
+                        <a href="#"><img src="{% static 'img/hotel1.jpg' %}" alt=""></a>
+                    </li>
+                    <li>
+                        <a href="#"><img src="{% static 'img/hotel3.jpg' %}" alt=""></a>
+                    </li>
+                    <li>
+                        <a href="#"><img src="{% static 'img/hotel4.jpg' %}" alt=""></a>
+                    </li>
+                    <li>
+                        <a href="#"><img src="{% static 'img/hotel5.jpg' %}" alt=""></a>
+                    </li>
+                </ul>
+                <!-- 小圆圈 -->
+                <ol class="circle">
+
+                </ol>
+            </div>
+    
+            <div class="footer">
+                <div>联系方式 :123456789</div>
+                <div>© Yuan's Hotel 版权所有</div>
+                <div><a href="{% url '管理员登录' %}" target="_blank" >管理员登录</a></div>
+            </div>
+
+{#    <div class="layui-row" style="height: 40px;margin-top: 10px;line-height: 40px;">#}
+{#            <div class="layui-col-md4"style="text-align: center">联系方式 :123456789</div>#}
+{#            <div class="layui-col-md4" style="text-align: center">© Yuan's Hotel 版权所有</div>#}
+{#            <div class="layui-col-md4"style="text-align: center"><a href="{% url '管理员登录' %}" target="_blank" >管理员登录</a></div>#}
+{#        </div>#}
+</div>
+
+    <!-- 底部固定区域 -->
+
+{#        <p > <span style="text-align: center"></span></p>#}
+
+
+{% endblock %}
+
+{% block script %}
+<script src="{% static "layui/layui.all.js" %}">
+    layui.use('element', function () {
+        var element = layui.element;
+        //…
+    });
+
+
+
+</script>
+    <script src="{% static 'js/home.js' %}"></script>
+    <script src="{% static 'js/animate.js' %}"></script>
+{% endblock %}
+</body>
+</html>
